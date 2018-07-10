@@ -46,7 +46,6 @@ start:
 		cout << a[i] << " ";
 
 		cout << endl << endl;
-		
 	}
 	break;
 	case 3: // произведение элементов, находящихся в массиве по порядку между максимальным и минимальным значением
@@ -86,7 +85,6 @@ start:
 
 		if (abs(imax - imin) == 1) p = 0; // если между минимумом и максимумом нет значений
 		cout << p << endl << endl;
-
 	}
 	break;
 	case 4:
@@ -144,7 +142,6 @@ start:
 				cout << a[i] << " ";
 			}
 			cout << endl;
-
 		}
 
 		cout << endl;
@@ -158,26 +155,26 @@ start:
 	{
 		const int n = 8;
 		double a[n] = { 4, 7, 0, 20, 17, 11, 1, 18 };
+		/*double a[n] = { 7, 13, 25, 8, 11, 19, 0, -5 };*/
 		
 		int i=0;
 		double min_e;
 		int k = 0;
+		
 
-		for (int pass = 0; pass < n; pass++)
+		for (int pass = 0; pass < n-1; pass++)
 		{
-			
-			min_e = a[pass + 1];
+			min_e = a[n - 1];
+
 			for (i = pass + 1; i < n; i++)
 			{
-				if (a[i] < min_e)
+				if (a[i] <= min_e)
 				{
 					min_e=a[i];
 					k = i;
 				}
 			}
 			if (min_e<a[pass]) swap(a[k], a[pass]);
-
-			
 		}
 
 		for (int i = 0; i < n; i++)
@@ -224,7 +221,6 @@ start:
 
 		cout << endl;
 		cout << "i = " << middle << endl; // выводим номер элемента искомого числа
-
 	}
 	break;
 	case 8:
