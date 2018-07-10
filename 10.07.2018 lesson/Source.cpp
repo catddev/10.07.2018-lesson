@@ -125,7 +125,7 @@ start:
 	break;
 	case 4:
 	{
-		// ПУЗЫРЬКОВАЯ СОРТИРОВКА
+		// ПУЗЫРЬКОВАЯ СОРТИРОВКА bubble sort
 
 		const int n = 8;
 		double a[n] = { 4, 0, 7, 17, 11, 1, 18, 20};
@@ -141,24 +141,104 @@ start:
 		cout << endl << endl;
 	}
 	break;
-	case 5:
+	case 5: // insertion sort СОРТИРОВКА СО ВСТАВКОЙ
 	{
+		/*const int n = 8;
+		double a[n] = { 4, 0, 7, 17, 11, 1, 18, 20 };
+
+		for (int pass = 0; pass < n; pass++)
+		{
+			for (int i = 0; i <= pass; i++)
+				if (a[i] > a[i + 1])
+					swap(a[i], a[i + 1]);
+
+			for (int i = 0; i <= pass; i++)
+			{
+				cout << a[i] << " ";
+			}
+			cout << endl;
+		}
+		cout << endl;*/
+
+		const int n = 8;
+		double a[n] = { 4, 0, 7, 17, 11, 1, 18, 20 };
+
+		int i = 0;
+		for (int pass = 1; pass < n; pass++) // начинаем сравнивать сразу с двух элементов 0 и 1
+		{
+			i = pass;
+			while ((a[i] < a[i - 1]) && i > 0) // сранивниваем в обратную сторону
+			{
+					swap(a[i], a[i - 1]);
+					i--;
+			}
+				
+			for (int i = 0; i <= pass; i++) // поступенчатый вывод для наглядносити
+			{
+				cout << a[i] << " ";
+			}
+			cout << endl;
+
+		}
+
+		cout << endl;
+		for (int i = 0; i < n; i++)
+			cout << a[i] << " ";
+
+		cout << endl << endl;
+
 
 	}
 	break;
-	case 6:
+	case 6: // selection sort сортировка выбора
 	{
-
+		const int n = 8;
+		double a[n] = { 4, 0, 7, 17, 11, 1, 18, 20 };
+		
 	}
 	break;
-	case 7:
+	case 7: // БИНАРНЫЙ ПОИСК
 	{
+		const int n = 8;
+		double a[n] = { 4, 0, 7, 17, 11, 1, 18, 20 };
+		int low;
+		int high;
+		int middle;
+		double key = 11; // искомое число, можно просто вводить
+
+		int i = 0;
+		for (int pass = 1; pass < n; pass++)
+		{
+			i = pass;
+			while ((a[i] < a[i - 1]) && i > 0)
+			{
+				swap(a[i], a[i - 1]);
+				i--;
+			}
+		}
+		low = 0;
+		high = n - 1;
+
+		while (low <= high)
+		{
+			middle = (low + high) / 2;
+			if (key > a[middle])
+				low = middle + 1;
+			else if (key < a[middle])
+				high = middle - 1;
+			else break;
+		}
+
+		for (int i = 0; i < n; i++)
+			cout << a[i] << " ";
+		cout << endl;
+		cout << middle << endl;
 
 	}
 	break;
 	case 8:
 	{
-
+		
 	}
 	break;
 	case 9:
