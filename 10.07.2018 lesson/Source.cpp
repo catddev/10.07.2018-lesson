@@ -169,13 +169,13 @@ start:
 			min_e = a[pass + 1];
 			for (i = pass + 1; i < n; i++)
 			{
-				if (a[i] <= min_e)
+				if (a[i] < min_e)
 				{
 					min_e=a[i];
 					k = i;
 				}
 			}
-			swap(a[k], a[pass]);
+			if (min_e<a[pass]) swap(a[k], a[pass]);
 
 			
 		}
