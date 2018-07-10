@@ -32,64 +32,27 @@ start:
 		double a[n] = { 1, 20, 3, 17, 11 };
 
 		double temp = 0;
-		double temp2 = a[0];
+		double temp2 = a[0]; // изначально присваиваем значение нулевого НЕИЗМЕНЯЕМОГО элемента массива
 
-		for (int i = 1; i < 4; i++)
+		for (int i = 1; i < 4; i++) // т.к. крайние элементы не трогаем по условию
 		{
-			temp = a[i];
+			temp = a[i]; // сохраняем перед изменением
 
 			a[i] = (temp2 + a[i + 1]) / 2.0;
-			temp2 = temp;
+			temp2 = temp; //перезаписываем для следующей итерации
 		}
 		
 		for (int i = 0; i < n; i++)
 		cout << a[i] << " ";
+
 		cout << endl << endl;
 		
 	}
 	break;
-	case 2:
-	{
-		/*const int n = ;
-		double a[n] = { 4, 7, 20, 3, 17, 11, 1, 18 };
-		int min_v = INT_MAX;
-		int max_v = INT_MIN;
-		int j1=0, j2=0;
-		double p = 1;
-
-
-		for (int i = 0; i < n; i++)
-		{
-			if (a[i] < min_v)
-			{
-				min_v = a[i];
-				i = j1;
-			}
-			if (a[i] > max_v)
-			{
-				max_v = a[i];
-				i = j2;
-			}
-		}
-
-		int jtemp = 0;
-		if (j1 > j2)
-		{
-			jtemp = j1;
-			j1 = j2;
-			j2 = jtemp;
-		}
-		for (int i = j1+1; i < j2; i++)
-		{
-			p = p*a[i];
-		}
-		cout << p << endl << endl;*/
-	}
-	break;
-	case 3:
+	case 3: // произведение элементов, находящихся в массиве по порядку между максимальным и минимальным значением
 	{
 		const int n = 8;
-		double a[n] = { 4, 7, 20, 3, 17, 11, 1, 18};
+		double a[n] = { 4, 7, 20, 3, 17, 11, 1, 18 };
 		double min_e, max_e;
 		int imax, imin, begin, end;
 		double p = 1;
@@ -112,6 +75,9 @@ start:
 		}
 		begin = imin < imax ? imin : imax;
 		end = imin < imax ? imax : imin;
+
+		// либо вот так в одну строку
+		//imin < imax ? (begin=imin, end=imax):(begin=imax, end=imin);
 
 		for (int i = begin + 1; i < end; i++)
 		{
@@ -146,7 +112,7 @@ start:
 		/*const int n = 8;
 		double a[n] = { 4, 0, 7, 17, 11, 1, 18, 20 };
 
-		for (int pass = 0; pass < n; pass++)
+		for (int pass = 0; pass < n; pass++) // это не то получилось, всего лишь модификация пузырьковой сортировки
 		{
 			for (int i = 0; i <= pass; i++)
 				if (a[i] > a[i + 1])
@@ -167,7 +133,7 @@ start:
 		for (int pass = 1; pass < n; pass++) // начинаем сравнивать сразу с двух элементов 0 и 1
 		{
 			i = pass;
-			while ((a[i] < a[i - 1]) && i > 0) // сранивниваем в обратную сторону
+			while ((a[i] < a[i - 1]) && i > 0) // сранивниваем в обратную сторону первый и нулевой и тд
 			{
 					swap(a[i], a[i - 1]);
 					i--;
@@ -186,15 +152,38 @@ start:
 			cout << a[i] << " ";
 
 		cout << endl << endl;
-
-
 	}
 	break;
 	case 6: // selection sort сортировка выбора
 	{
 		const int n = 8;
-		double a[n] = { 4, 0, 7, 17, 11, 1, 18, 20 };
+		double a[n] = { 4, 7, 0, 20, 17, 11, 1, 18 };
 		
+		int i=0;
+		double min_e;
+		int k = 0;
+
+		for (int pass = 0; pass < n; pass++)
+		{
+			
+			min_e = a[pass + 1];
+			for (i = pass + 1; i < n; i++)
+			{
+				if (a[i] <= min_e)
+				{
+					min_e=a[i];
+					k = i;
+				}
+			}
+			swap(a[k], a[pass]);
+
+			
+		}
+
+		for (int i = 0; i < n; i++)
+			cout << a[i] << " ";
+
+		cout << endl << endl;
 	}
 	break;
 	case 7: // БИНАРНЫЙ ПОИСК
@@ -204,10 +193,10 @@ start:
 		int low;
 		int high;
 		int middle;
-		double key = 11; // искомое число, можно просто вводить
+		double key = 11; // искомое число, для простоты ввели заранее
 
 		int i = 0;
-		for (int pass = 1; pass < n; pass++)
+		for (int pass = 1; pass < n; pass++) // здесь просто отсортируем, потому что бинарный поиск только для упорядоченного массива
 		{
 			i = pass;
 			while ((a[i] < a[i - 1]) && i > 0)
@@ -216,6 +205,7 @@ start:
 				i--;
 			}
 		}
+
 		low = 0;
 		high = n - 1;
 
@@ -226,13 +216,14 @@ start:
 				low = middle + 1;
 			else if (key < a[middle])
 				high = middle - 1;
-			else break;
+			else break; // то есть когда key==a[middle] - искомое число найдено
 		}
 
 		for (int i = 0; i < n; i++)
 			cout << a[i] << " ";
+
 		cout << endl;
-		cout << middle << endl;
+		cout << "i = " << middle << endl; // выводим номер элемента искомого числа
 
 	}
 	break;
